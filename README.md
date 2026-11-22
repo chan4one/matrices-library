@@ -1,2 +1,3 @@
-matrices.luau
-this library is set to come soon..
+# matrices.luau
+> [!IMPORTANT]
+> This library has not been released.
