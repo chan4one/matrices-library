@@ -12,7 +12,7 @@
 ### create
 Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
 ```luau
-matrices.create(rows: number, cols: number, value: number)
+matrices.create(rows: number, cols: number, value: number?)
 ```
 Example
 ```luau
