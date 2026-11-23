@@ -9,7 +9,7 @@
 
 
 
-### matrices.create()
+### create()
 ```luau
 matrices.create(rows: number, cols: number, value: number)
 ```
@@ -28,7 +28,7 @@ print(matrices.create(2, 4, 1.0))
 ---
 
 
-### matrices.random()
+### random()
 Creates a matrice with the specified `rows` and `cols`, filled with random numbers between `min` and `max`.
 
 ```luau
@@ -37,7 +37,7 @@ matrices.random(rows: number, cols: number, min: number, max: number)
 ---
 
 
-### matrices.identity()
+### identity()
 Creates an identity matrix of size `n × n`: a square matrix with `1` on the main diagonal and `0` everywhere else.
 ```luau
 matrices.identity(n: number)
