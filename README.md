@@ -10,11 +10,14 @@
 #### `matrices.create(rows: number, cols: number, value: number?)`  
 Creates a matrix with the specified `rows` and `cols`, filled with an optional `value`.
 ```luau
-matrices.create(2, 2, 1.0);
+matrices.create(2, 2, 1.0)
+```
+```luau
+1.00   1.00
+1.00   1.00
 ```
 > [!TIP]
 > Omit `value` if you want a zero-filled matrix (`0.0`). Default initialization is significantly faster than passing `0` explicitly.
-
 
 
 &nbsp;
