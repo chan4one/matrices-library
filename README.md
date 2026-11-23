@@ -9,41 +9,35 @@
 
 
 
-### create
-Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
+### matrices.create()
 ```luau
 matrices.create(rows: number, cols: number, value: number)
 ```
-
-Example
+Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
 ```luau
-const k = np.create(2, 2, 1.0)
+print(matrices.create(2, 4, 1.0))
 ```
-```luau
-1.00   1.00
-1.00   1.00
+```
+1.00   1.00   1.00   1.00
+1.00   1.00   1.00   1.00
 ```
 
 > [!TIP]
 > Omit `value` when you don't need a specific fill. Without it, the matrice is created noticeably faster, since there's no need to write a value into every cell. The cells default to `0`.
 
-
-
-
-
 ---
 
 
-### random
-Creates a matrix with the specified `rows` and `cols`, filled with random numbers between `min` and `max`.
+### matrices.random()
+Creates a matrice with the specified `rows` and `cols`, filled with random numbers between `min` and `max`.
+
 ```luau
 matrices.random(rows: number, cols: number, min: number, max: number)
 ```
-
 ---
 
 
-### identity
+### matrices.identity()
 Creates an identity matrix of size `n × n`: a square matrix with `1` on the main diagonal and `0` everywhere else.
 ```luau
 matrices.identity(n: number)
