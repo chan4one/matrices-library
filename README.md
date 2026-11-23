@@ -4,12 +4,27 @@
 
 ## Constructs
 
-* #### `matrices.create(rows: number, cols: number, value: number?)`  
-  Creates a matrice with rows and cols and fills them with an optional `value` parameter.
+
+
+
+#### `matrices.create(rows: number, cols: number, value: number?)`  
+Creates a matrix with the specified `rows` and `cols`, filled with an optional `value`.
+```luau
+matrices.create(2, 2, 1.0);
+```
+> [!TIP]
+> Omit `value` if you want a zero-filled matrix (`0.0`). Default initialization is significantly faster than passing `0` explicitly.
+
+
 
 &nbsp;
-* #### `matrices.random(rows: number, cols: number, min: number?, max: number?)`  
-  Creates a matrice with rows and cols and fills them with random values between min and max (default is 0 - 1)
+#### `matrices.random(rows: number, cols: number, min: number?, max: number?)`  
+Creates a matrice with rows and cols and fills them with random values between min and max (default is 0 - 1)
+```luau
+matrices.random(2, 2, 0.0, 1.0);
+```
+
+
 
 &nbsp;
 * #### `matrices.identity(n: number)`  
