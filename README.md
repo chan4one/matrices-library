@@ -10,10 +10,11 @@
 
 
 ### create
+Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
 ```luau
 matrices.create(rows: number, cols: number, value: number)
 ```
-Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
+Example
 ```luau
 print(matrices.create(2, 4, 1.0))
 ```
