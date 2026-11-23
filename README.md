@@ -1,63 +1,93 @@
-# matrices.luau
+### matrices.luau
 > [!IMPORTANT]
 > This library has not been released.
 
-## Constructs
+
+## API Functions
 
 
 
 
-#### `matrices.create(rows: number, cols: number, value: number?)`  
-Creates a matrix with the specified `rows` and `cols`, filled with an optional `value`.
+
+### create
+Creates a matrix with the specified `rows` and `cols`, filled with an optional `value` (defaults to `0`).  
 ```luau
-matrices.create(2, 2, 1.0)
+matrices.create(rows: number, cols: number, value: number)
+```
+
+Example
+```luau
+const k = np.create(2, 2, 1.0)
 ```
 ```luau
 1.00   1.00
 1.00   1.00
 ```
+
 > [!TIP]
-> Omit `value` if you want a zero-filled matrix (`0.0`). Default initialization is significantly faster than passing `0` explicitly.
+> Omit `value` when you don't need a specific fill. Without it, the matrice is created noticeably faster, since there's no need to write a value into every cell. The cells default to `0`.
 
 
-&nbsp;
-#### `matrices.random(rows: number, cols: number, min: number?, max: number?)`  
-Creates a matrice with rows and cols and fills them with random values between min and max (default is 0 - 1)
+
+
+
+---
+
+
+### random
+Creates a matrix with the specified `rows` and `cols`, filled with random numbers between `min` and `max`.
 ```luau
-matrices.random(2, 2, 0.0, 1.0);
+matrices.random(rows: number, cols: number, min: number, max: number)
 ```
 
+---
 
 
-&nbsp;
-* #### `matrices.identity(n: number)`  
-  Creates a identity matrice with rows and cols equal to n
+### identity
+Creates an identity matrix of size `n × n`: a square matrix with `1` on the main diagonal and `0` everywhere else.
+```luau
+matrices.identity(n: number)
+```
 
-&nbsp;
-* #### `matrices.array(table: {{number}})`  
-  Converts a table into a matrice, provided that the table takes this format
-  
-  ```luau
-  const t = {
-    {1, 0, 0},
-    {0, 1, 0},
-    {0, 0, 1}
-  }
-  ```
+---
 
-&nbsp;
-## Operations
 
-* #### `matrices.transpose(b: matrix)`  
-  Returns a new transposed matrice of b
+### array
+Creates a matrix from a two-dimensional array of numbers (t), where each inner array becomes a `row` of the matrix.
+```luau
+matrices.array(t: {{number}})
+```
 
-&nbsp;
-* #### `matrices.dot(b1: matrix, b2: matrix)`  
-  Returns the dot product of 2 matrices as one
-  
-> [!CAUTION]
-> For element-wise multiplication with a matrice or scalar use the `*` operator.
+---
 
-&nbsp;
-* #### `matrices.map(b1: matrix, fn: (number) -> number)`  
-  Some description here
+### clone
+Creates a new matrix that is a copy of the given `matrice`. Changes to the clone do not affect the original.
+```luau
+matrices.clone(matrice: matrice)
+```
+
+---
+
+### dot
+Computes the matrix product (dot product) of `a` and `b`. The number of columns in `a` must equal the number of rows in `b`. The result has the same number of rows as a and the same number of columns as `b`
+```luau
+matrices.dot(a: matrice, b: matrice)
+```
+
+---
+
+### map
+Creates a new matrix by calling `fn` on every element of the given matrix and storing the returned value in the same position. The original matrix is not modified.
+```luau
+matrices.map(matrice: matrice, fn: (value: number, row: number, col: number) => number)
+```
+
+---
+
+### transpose
+Returns a new matrix where rows and columns are swapped, so the element at position [i][j] moves to [j][i]. A matrix with r rows and c columns becomes one with c rows and r columns.
+```luau
+matrices.transpose(matrice: matrice)
+```
+
+---
