@@ -119,4 +119,14 @@ Returns a new matrix where rows and columns are swapped, so the element at posit
 matrices.transpose(matrice: matrice)
 ```
 
----
+&nbsp;
+## Properties
+
+
+### shape
+Returns the shape of the current matrix. (`rows`, `cols`)
+```luau
+matrice.shape() : (number, number)
+```
+
+
