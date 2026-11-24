@@ -55,6 +55,8 @@ matrices.array(t: {{number}})
 
 ---
 
+
+
 ### clone
 Creates a new matrix that is a copy of the given `matrice`. Changes to the clone do not affect the original.
 ```luau
@@ -62,6 +64,38 @@ matrices.clone(matrice: matrice)
 ```
 
 ---
+
+
+
+### slice
+Creates a new matrix containing a subset of rows from `matrice`, starting at `startRow` through `endRow` (both **0-indexed** and inclusive). The original matrix is not modified.
+```luau
+matrices.slice(matrice: matrice, startrow: number, endrow: number)
+```
+> [!CAUTION]
+> Indices are **0-based** and inclusive (`0` to `rows - 1`). Passing `endRow >= rows` will go out of bounds.
+
+Example
+```luau
+const k = matrices.array({
+	{ 1,  2,  3,  4  }, -- row 0
+	{ 5,  6,  7,  8  }, -- row 1
+	{ 9,  10, 11, 12 }, -- row 2
+	{ 13, 14, 15, 16 }, -- row 3
+})
+
+print(matrices.slice(k, 1, 2)) -- slices row 1 through row 2
+```
+```
+5.00   6.00   7.00   8.00
+9.00   10.00  11.00  12.00
+```
+
+---
+
+
+
+
 
 ### dot
 Computes the matrix product (dot product) of `a` and `b`. The number of columns in `a` must equal the number of rows in `b`. The result has the same number of rows as a and the same number of columns as `b`
