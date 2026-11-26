@@ -2,12 +2,318 @@
 <html data-theme="dark">
   <head>
     <meta charset="utf-8">
+    <title>matrices.luau</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0b">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
     <!-- Core Theme + Built-in Dark Palette -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/core.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/addons/core-dark.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css">
+
+    <style>
+      /* ---------- Tokens ---------- */
+      :root,
+      [data-theme="dark"] {
+        --ink:        #0a0a0b;  /* page */
+        --ink-deep:   #050505;  /* sidebar */
+        --surface:    #141415;  /* code, tables */
+        --surface-2:  #1f1f21;  /* hover, inline code */
+        --line:       #2b2b2e;
+        --text:       #d8d8da;
+        --text-dim:   #8e8e94;
+        --accent:     #7ea6ff;
+        --accent-2:   #ffb86b;
+
+        --font-sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+        /* Docsify variables */
+        --theme-color: var(--accent);
+        --base-background-color: var(--ink);
+        --base-color: var(--text);
+        --base-font-family: var(--font-sans);
+        --sidebar-background: var(--ink-deep);
+        --sidebar-border-color: var(--line);
+        --sidebar-width: 18rem;
+        --content-max-width: 50rem;
+        --heading-color: #f4f4f5;
+        --link-color: var(--accent);
+        --blockquote-border-color: var(--accent-2);
+      }
+
+      /* ---------- Base ---------- */
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-sans);
+        background: var(--ink);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection { background: rgba(126, 166, 255, .3); }
+
+      /* Coordinate-grid backdrop that fades toward the bottom */
+      main {
+        background-color: var(--ink);
+        background-image:
+          linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+        background-size: 36px 36px;
+        background-attachment: local;
+      }
+
+      /* ---------- Sidebar ---------- */
+      .sidebar {
+        background: var(--ink-deep);
+        border-right: 1px solid var(--line);
+        padding-top: 1.25rem;
+      }
+      .sidebar::-webkit-scrollbar { width: 6px; }
+      .sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+      .sidebar .app-name { margin: .25rem 0 1.25rem; text-align: left; padding: 0 1.25rem; }
+      .sidebar .app-name-link {
+        font-family: var(--font-mono);
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: -.01em;
+        color: var(--heading-color);
+      }
+      .sidebar .app-name-link::before { content: "["; color: var(--accent); margin-right: .35em; }
+      .sidebar .app-name-link::after  { content: "]"; color: var(--accent); margin-left: .35em; }
+
+      .sidebar .search { padding: 0 1rem .75rem; margin-bottom: .5rem; border-bottom: 1px solid var(--line); }
+      .sidebar .search input {
+        width: 100%;
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: .5rem .7rem;
+        font: inherit;
+        font-size: .9rem;
+        transition: border-color .15s, box-shadow .15s;
+      }
+      .sidebar .search input::placeholder { color: var(--text-dim); }
+      .sidebar .search input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(126,166,255,.18);
+      }
+      .sidebar .search .results-panel,
+      .sidebar .search .matching-post { border-color: var(--line); }
+      .sidebar .search a { color: var(--text); }
+      .sidebar .search a:hover h2 { color: var(--accent); }
+      .sidebar .search .matching-post h2 { font-size: .95rem; }
+      .sidebar .search .matching-post p { color: var(--text-dim); }
+      .sidebar .search .search-keyword { color: var(--accent-2); font-style: normal; font-weight: 600; background: none; }
+
+      .sidebar-nav { padding: 0 .5rem; }
+      .sidebar-nav ul { margin: 0; }
+      .sidebar-nav li a {
+        display: block;
+        padding: .28rem .75rem;
+        border-left: 2px solid transparent;
+        border-radius: 0 6px 6px 0;
+        color: var(--text-dim);
+        font-size: .93rem;
+        text-decoration: none;
+        transition: color .12s, background-color .12s;
+      }
+      .sidebar-nav li a:hover { color: var(--text); background: var(--surface); }
+      .sidebar-nav li.active > a,
+      .sidebar-nav li.active > a:hover {
+        color: var(--accent);
+        font-weight: 600;
+        border-left-color: var(--accent);
+        background: rgba(126,166,255,.08);
+      }
+      .sidebar-nav ul ul { margin-left: .5rem; }
+      .sidebar-nav ul ul a { font-size: .87rem; }
+
+      .sidebar-toggle { background: transparent; }
+      .sidebar-toggle span { background-color: var(--text-dim); }
+
+      /* ---------- Content ---------- */
+      .content { padding-top: 2.5rem; }
+      .markdown-section {
+        max-width: 50rem;
+        padding: 1rem 2rem 5rem;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--text);
+      }
+      .markdown-section p,
+      .markdown-section li { max-width: 72ch; }
+
+      .markdown-section h1,
+      .markdown-section h2,
+      .markdown-section h3,
+      .markdown-section h4 {
+        font-family: var(--font-sans);
+        color: var(--heading-color);
+        font-weight: 700;
+        letter-spacing: -.02em;
+        line-height: 1.2;
+      }
+
+      /* The one signature: page title sits inside matrix brackets */
+      .markdown-section h1 {
+        position: relative;
+        display: inline-block;
+        font-size: 2.6rem;
+        margin: .25rem 0 1.5rem;
+        padding: .2em .65em;
+      }
+      .markdown-section h1::before,
+      .markdown-section h1::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: .38em;
+        border: 3px solid var(--accent);
+      }
+      .markdown-section h1::before { left: 0;  border-right: 0; }
+      .markdown-section h1::after  { right: 0; border-left: 0; }
+
+      .markdown-section h2 {
+        font-size: 1.7rem;
+        margin: 3rem 0 1rem;
+        padding-bottom: .4rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .markdown-section h3 {
+        font-size: 1.25rem;
+        margin: 2.25rem 0 .75rem;
+        font-family: var(--font-mono);
+        font-weight: 500;
+        letter-spacing: -.01em;
+        color: var(--accent);
+      }
+      .markdown-section h4 { font-size: 1.05rem; margin: 1.75rem 0 .5rem; }
+
+      .markdown-section a { color: var(--accent); text-decoration-color: rgba(126,166,255,.4); text-underline-offset: 3px; }
+      .markdown-section a:hover { text-decoration-color: var(--accent); }
+      .markdown-section strong { color: #f4f4f5; font-weight: 600; }
+      .markdown-section hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+      /* Inline code */
+      .markdown-section code {
+        font-family: var(--font-mono);
+        font-size: .86em;
+        background: var(--surface-2);
+        color: #d9e3ff;
+        border-radius: 4px;
+        padding: .15em .4em;
+      }
+
+      /* Code blocks */
+      .markdown-section pre {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent);
+        border-radius: 8px;
+        padding: 0;
+        margin: 1.5rem 0;
+      }
+      .markdown-section pre > code {
+        display: block;
+        background: none;
+        padding: 1.1rem 1.25rem;
+        font-size: .86rem;
+        line-height: 1.7;
+        color: var(--text);
+        tab-size: 2;
+      }
+      .markdown-section pre::after { color: var(--text-dim); } /* docsify language label */
+
+      /* Syntax colors */
+      .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6b6b73; font-style: italic; }
+      .token.punctuation { color: #8e8e96; }
+      .token.operator { color: #a3a3ab; background: none; }
+      .token.keyword { color: #c4a8ff; }
+      .token.builtin, .token.class-name { color: #6fd6e4; }
+      .token.function { color: #7ea6ff; }
+      .token.number, .token.boolean, .token.constant { color: var(--accent-2); }
+      .token.string, .token.string-interpolation { color: #94dcae; }
+      .token.property { color: #d8d8da; }
+
+      /* Blockquotes / callouts */
+      .markdown-section blockquote {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent-2);
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+        padding: .75rem 1.25rem;
+        color: var(--text);
+      }
+      .markdown-section blockquote p { margin: .4rem 0; }
+
+      /* Tables */
+      .markdown-section table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        font-size: .93rem;
+      }
+      .markdown-section th {
+        background: var(--surface);
+        color: var(--heading-color);
+        font-weight: 600;
+        text-align: left;
+        padding: .6rem .9rem;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .markdown-section td {
+        padding: .55rem .9rem;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .markdown-section tr:last-child td { border-bottom: 0; }
+      .markdown-section tr:nth-child(2n) td { background: rgba(20,20,21,.6); }
+      .markdown-section td code { white-space: nowrap; }
+
+      .markdown-section ul, .markdown-section ol { padding-left: 1.4rem; }
+      .markdown-section li::marker { color: var(--accent); }
+      .markdown-section img { border-radius: 8px; border: 1px solid var(--line); }
+
+      /* ---------- Chrome ---------- */
+      .github-corner svg { fill: var(--accent) !important; color: var(--ink) !important; }
+      .docsify-copy-code-button {
+        background: var(--surface-2) !important;
+        color: var(--text-dim) !important;
+        border: 1px solid var(--line) !important;
+        border-radius: 5px !important;
+        font-family: var(--font-sans) !important;
+        font-size: .75rem !important;
+      }
+      .docsify-copy-code-button:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+      .progress { background: var(--accent) !important; }
+
+      a:focus-visible, button:focus-visible, input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      @media (max-width: 768px) {
+        .markdown-section { padding: 1rem 1.1rem 4rem; }
+        .markdown-section h1 { font-size: 2rem; }
+        .markdown-section h2 { font-size: 1.45rem; }
+      }
+    </style>
   </head>
   <body class="loading">
     <div id="app"></div>
@@ -18,13 +324,20 @@
         name: 'matrices.luau',
         repo: 'chan4one/matrices-library',
         homepage: 'index.md',
-        subMaxLevel: 3
+        subMaxLevel: 3,
+        auto2top: true,
+        search: {
+          placeholder: 'Search docs',
+          noData: 'No results found.',
+          depth: 3
+        }
       };
     </script>
 
     <!-- Docsify.js -->
     <script src="//cdn.jsdelivr.net/npm/docsify@5"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify@5/dist/plugins/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@3"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
     <script>
       Prism.languages.luau = Prism.languages.extend('lua', {
