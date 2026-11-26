@@ -180,45 +180,50 @@
         margin: 2rem 0;
       }
 
-      /* Inline Code & Code Blocks */
-      .markdown-section code {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.85em;
-        background-color: #14141c !important;
-        color: #93c5fd !important;
-        padding: 2px 6px;
-        border-radius: 5px;
-        border: 1px solid #1f1f2b;
-      }
 
 
       
-      .markdown-section pre {
-        position: relative;
+      /* Override Docsify v5 code block variables & padding */
+      .markdown-section pre,
+      .markdown-section pre[data-lang] {
+        position: relative !important;
         background-color: #111216 !important;
         border: 1px solid #23252e !important;
         border-radius: 6px !important;
-        padding: 14px 18px !important;
+        padding: 12px 16px !important;
         margin: 0.75rem 0 !important;
+        --code-block-padding: 12px 16px !important;
       }
 
-      /* Remove Docsify v5's top language label space ("luau") */
+      /* Hide Docsify v5 language header / badge elements */
       .markdown-section pre::before,
-      .markdown-section pre::after {
+      .markdown-section pre::after,
+      .markdown-section pre[data-lang]::before,
+      .markdown-section pre[data-lang]::after {
         display: none !important;
         content: none !important;
       }
 
       .markdown-section pre > code {
-        display: block;
+        display: block !important;
         background-color: transparent !important;
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
         color: #e4e4e7 !important;
-        font-size: 0.9rem;
-        line-height: 1.4;
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
       }
+
+      /* Keep the copy button centered vertically on the right instead of pushing the top down */
+      .docsify-copy-code-button {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        padding: 4px 8px !important;
+        font-size: 0.75rem !important;
+      }
+
+
 
       
 
