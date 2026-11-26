@@ -121,6 +121,40 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2360a5fa' d='M12 3l8 4.6v8.8L12 21l-8-4.6V7.6L12 3zm0 2.3L6.5 8.5 12 11.7l5.5-3.2L12 5.3zm-6 5v5l5 2.9v-5l-5-2.9zm12 0l-5 2.9v5l5-2.9v-5z'/%3E%3C/svg%3E");
       }
 
+
+       /* GitHub Dark Syntax Highlighting Palette */
+      .token.function {
+        color: #d2a8ff !important; /* Purple: create, print */
+      }
+      
+      .token.builtin,
+      .token.class-name,
+      .token.number,
+      .token.boolean,
+      .token.constant {
+        color: #79c0ff !important; /* Sky Blue: number, matrice, 2, 4, 1.0 */
+      }
+      
+      .token.keyword,
+      .token.operator {
+        color: #ff7b72 !important; /* Coral Red: local, const, function, ? */
+      }
+      
+      .token.string,
+      .token.string-interpolation {
+        color: #a5d6ff !important; /* Light Blue: strings */
+      }
+      
+      .token.comment {
+        color: #8b949e !important; /* Muted Gray: -- comments */
+        font-style: italic;
+      }
+      
+      .token.punctuation {
+        color: #e6edf3 !important; /* Crisp White: (), :, . */
+      }
+      
+      
       .markdown-section h1,
       .markdown-section h2,
       .markdown-section h3 {
@@ -222,12 +256,14 @@
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
     <script>
       Prism.languages.luau = Prism.languages.extend('lua', {
-        'keyword': /\b(?:and|break|continue|const|do|else|elseif|end|export|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|type|typeof|until|while)\b/,
-        'builtin': /\b(?:buffer|vector|string|table|math|coroutine|task|debug|os|bit32|utf8|number|boolean|any|unknown|never|matrice)\b/,
-        'string-interpolation': {
-          pattern: /`(?:\\[\s\S]|\{(?:[^{}]|\{[^{}]*\})*\}|[^\\`{])*`/,
-          greedy: true
-        }
+          'keyword': /\b(?:and|break|continue|const|do|else|elseif|end|export|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|type|typeof|until|while)\b/,
+          'builtin': /\b(?:buffer|vector|string|table|math|coroutine|task|debug|os|bit32|utf8|number|boolean|any|unknown|never|matrice)\b/,
+          'operator': /[-+*/%^#=~<>]=?|\.\.\.?|\?|\b(?:and|or|not)\b/,
+          'string-interpolation': {
+            pattern: /`(?:\\[\s\S]|\{(?:[^{}]|\{[^{}]*\})*\}|[^\\`{])*`/,
+            greedy: true
+          }
+        });
       });
     </script>
   </body>
