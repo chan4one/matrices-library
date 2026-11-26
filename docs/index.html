@@ -182,20 +182,34 @@
 
 
 
-      
-      /* Override Docsify v5 code block variables & padding */
-      .markdown-section pre,
-      .markdown-section pre[data-lang] {
-        position: relative !important;
+
+      /* DOCSIFY CODE BLOCKS */
+      :root,
+      [data-theme="dark"] {
+        --code-block-padding: 10px 14px;
+        --code-block-margin: 0.75rem 0;
+      }
+
+      .markdown-section pre {
         background-color: #111216 !important;
         border: 1px solid #23252e !important;
         border-radius: 6px !important;
-        padding: 12px 16px !important;
+        padding: 0 !important;
         margin: 0.75rem 0 !important;
-        --code-block-padding: 12px 16px !important;
       }
 
-      /* Hide Docsify v5 language header / badge elements */
+      .markdown-section pre > code {
+        display: block !important;
+        background-color: transparent !important;
+        border: none !important;
+        padding: 10px 14px !important;
+        margin: 0 !important;
+        color: #e4e4e7 !important;
+        font-size: 0.88rem !important;
+        line-height: 1.45 !important;
+      }
+
+      /* Hide Docsify v5 language badge */
       .markdown-section pre::before,
       .markdown-section pre::after,
       .markdown-section pre[data-lang]::before,
@@ -204,18 +218,6 @@
         content: none !important;
       }
 
-      .markdown-section pre > code {
-        display: block !important;
-        background-color: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        color: #e4e4e7 !important;
-        font-size: 0.9rem !important;
-        line-height: 1.4 !important;
-      }
-
-      /* Keep the copy button centered vertically on the right instead of pushing the top down */
       .docsify-copy-code-button {
         top: 50% !important;
         transform: translateY(-50%) !important;
