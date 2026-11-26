@@ -7,6 +7,7 @@
     <!-- Core Theme + Built-in Dark Palette -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/core.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/addons/core-dark.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css">
   </head>
   <body class="loading">
     <div id="app"></div>
@@ -25,5 +26,15 @@
     <script src="//cdn.jsdelivr.net/npm/docsify@5"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify@5/dist/plugins/search.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
+    <script>
+      Prism.languages.luau = Prism.languages.extend('lua', {
+        'keyword': /\b(?:and|break|continue|const|do|else|elseif|end|export|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|type|typeof|until|while)\b/,
+        'builtin': /\b(?:buffer|vector|string|table|math|coroutine|task|debug|os|bit32|utf8|number|boolean|any|unknown|never|matrice)\b/,
+        'string-interpolation': {
+          pattern: /`(?:\\[\s\S]|\{(?:[^{}]|\{[^{}]*\})*\}|[^\\`{])*`/,
+          greedy: true
+        }
+      });
+    </script>
   </body>
 </html>
