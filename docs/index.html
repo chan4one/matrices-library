@@ -184,18 +184,12 @@
 
 
       /* DOCSIFY CODE BLOCKS */
-      :root,
-      [data-theme="dark"] {
-        --code-block-padding: 10px 14px;
-        --code-block-margin: 0.75rem 0;
-      }
-
       .markdown-section pre {
         background-color: #111216 !important;
         border: 1px solid #23252e !important;
-        border-radius: 2px !important;
+        border-radius: 6px !important;
         padding: 0 !important;
-        margin: 0.75rem 0 !important;
+        margin: 0.2rem 0 !important;
       }
 
       .markdown-section pre > code {
@@ -209,21 +203,7 @@
         line-height: 1.45 !important;
       }
 
-      /* Hide Docsify v5 language badge */
-      .markdown-section pre::before,
-      .markdown-section pre::after,
-      .markdown-section pre[data-lang]::before,
-      .markdown-section pre[data-lang]::after {
-        display: none !important;
-        content: none !important;
-      }
 
-      .docsify-copy-code-button {
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        padding: 4px 8px !important;
-        font-size: 0.75rem !important;
-      }
 
 
 
