@@ -194,28 +194,30 @@
 
       
       .markdown-section pre {
-        background-color: #0d0d12 !important;
-        border: 1px solid #1a1a24 !important;
-        border-radius: 8px !important;
-        padding: 10px 14px !important;
-        margin: 0.5rem 0 !important;
+        position: relative;
+        background-color: #111216 !important;
+        border: 1px solid #23252e !important;
+        border-radius: 6px !important;
+        padding: 14px 18px !important;
+        margin: 0.75rem 0 !important;
+      }
+
+      /* Remove Docsify v5's top language label space ("luau") */
+      .markdown-section pre::before,
+      .markdown-section pre::after {
+        display: none !important;
+        content: none !important;
       }
 
       .markdown-section pre > code {
+        display: block;
         background-color: transparent !important;
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
         color: #e4e4e7 !important;
-        font-size: 0.85rem;
-        line-height: 1.45;
-      }
-
-      /* Keep the top-right language label (luau) tight against the corner */
-      .markdown-section pre::after {
-        top: 6px !important;
-        right: 10px !important;
-        font-size: 0.7rem !important;
+        font-size: 0.9rem;
+        line-height: 1.4;
       }
 
       
