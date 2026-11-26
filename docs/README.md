@@ -27,6 +27,7 @@ print(matrices.create(2, 4, 1.0))
 > Omit `value` when you don't need a specific fill. Without it, the matrice is created noticeably faster, since there's no need to write a value into every cell. The cells default to `0`.
 
 ---
+&nbsp;
 
 
 ### random
@@ -36,6 +37,7 @@ Creates a matrice with the specified `rows` and `cols`, filled with random numbe
 matrices.random(rows: number, cols: number, min: number, max: number)
 ```
 ---
+&nbsp;
 
 
 ### identity
