@@ -97,6 +97,30 @@
         line-height: 1.7;
       }
 
+      /* Align h3 headings with inline SVG icons */
+      .markdown-section h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      /* Purple Roblox-style Method / Function Icon (for API Functions) */
+      .markdown-section h3::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d875ff' d='M14.5 4.2L20 7.4v6.4l-5.5 3.2L9 13.8V7.4l5.5-3.2zm0 2.1L11.2 8.2l3.3 1.9 3.3-1.9-3.3-1.9zm-3.7 3.5v3.2l2.8 1.6v-3.2l-2.8-1.6zm7.4 0l-2.8 1.6v3.2l2.8-1.6V9.8z'/%3E%3Crect x='3' y='8' width='4' height='1.8' rx='0.9' fill='%23d875ff'/%3E%3Crect x='2' y='11.2' width='5' height='1.8' rx='0.9' fill='%23d875ff'/%3E%3Crect x='4' y='14.4' width='3' height='1.8' rx='0.9' fill='%23d875ff'/%3E%3C/svg%3E");
+      }
+      
+      /* Blue Roblox-style Property Icon (for everything after ## Properties) */
+      .markdown-section h2#properties ~ h3::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2360a5fa' d='M12 3l8 4.6v8.8L12 21l-8-4.6V7.6L12 3zm0 2.3L6.5 8.5 12 11.7l5.5-3.2L12 5.3zm-6 5v5l5 2.9v-5l-5-2.9zm12 0l-5 2.9v5l5-2.9v-5z'/%3E%3C/svg%3E");
+      }
+
       .markdown-section h1,
       .markdown-section h2,
       .markdown-section h3 {
