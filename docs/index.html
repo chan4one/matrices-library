@@ -1,11 +1,12 @@
 <!doctype html>
-<html>
+<html data-theme="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <!-- Core Theme -->
+    <!-- Core Theme + Built-in Dark Palette -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/core.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@5/dist/themes/addons/core-dark.min.css">
   </head>
   <body class="loading">
     <div id="app"></div>
@@ -13,14 +14,16 @@
     <!-- Configuration -->
     <script>
       window.$docsify = {
-        //...
+        name: 'matrices.luau',
+        repo: 'chan4one/matrices-library',
+        homepage: 'index.md',
+        subMaxLevel: 3
       };
     </script>
 
     <!-- Docsify.js -->
     <script src="//cdn.jsdelivr.net/npm/docsify@5"></script>
-
-    <!-- Plugins (optional) -->
-    <!-- <script src="//cdn.jsdelivr.net/npm/docsify@5/dist/plugins/search.min.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@5/dist/plugins/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
   </body>
 </html>
