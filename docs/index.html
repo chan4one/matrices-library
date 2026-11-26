@@ -191,22 +191,34 @@
         border: 1px solid #1f1f2b;
       }
 
+
+      
       .markdown-section pre {
         background-color: #0d0d12 !important;
         border: 1px solid #1a1a24 !important;
-        border-radius: 10px !important;
-        padding: 16px 20px !important;
-        margin: 1rem 0 !important;
+        border-radius: 8px !important;
+        padding: 10px 14px !important;
+        margin: 0.75rem 0 !important;
       }
 
       .markdown-section pre > code {
         background-color: transparent !important;
         border: none !important;
         padding: 0 !important;
+        margin: 0 !important;
         color: #e4e4e7 !important;
-        font-size: 0.88rem;
-        line-height: 1.6;
+        font-size: 0.85rem;
+        line-height: 1.45;
       }
+
+      /* Keep the top-right language label (luau) tight against the corner */
+      .markdown-section pre::after {
+        top: 6px !important;
+        right: 10px !important;
+        font-size: 0.7rem !important;
+      }
+
+      
 
       /* Blockquotes & Alerts */
       .markdown-section blockquote {
