@@ -94,6 +94,15 @@ print(matrices.slice(k, 1, 2)) -- slices row 1 through row 2
 ---
 
 
+### wrap
+Takes a buffer and enables acceleration methods into it, transforming it to a matrix
+```luau
+matrices.wrap(buf: buffer)
+```
+`buf` should have the first 8 bytes the `rows` and `cols` value to sucesfully convert it into a buffer.  
+this method is essential when networking, and want to reconstruct the matrix after passing only the buffer to the bandwith.
+
+---
 
 
 
